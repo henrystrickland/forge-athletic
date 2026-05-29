@@ -30,7 +30,7 @@ export const forgeNav: NavContent = {
   cta: { label: "Book a class", href: "#book" },
 };
 
-export type ClassCard = { name: string; duration: string; intensity: string; description: string };
+export type ClassCard = { name: string; duration: string; intensity: string; description: string; image: string };
 
 export type ClassesContent = {
   eyebrow: string;
@@ -42,9 +42,9 @@ export const forgeClasses: ClassesContent = {
   eyebrow: "What we offer",
   heading: "Train with intention.",
   classes: [
-    { name: "Barbell Foundations", duration: "60 min", intensity: "All levels", description: "Master the core lifts with coached technique and progressive loading." },
-    { name: "Conditioning", duration: "45 min", intensity: "High", description: "Engine-building intervals that blend strength and cardio into one session." },
-    { name: "Mobility & Recovery", duration: "50 min", intensity: "Low", description: "Restorative work to keep joints healthy and movement pain-free." },
-    { name: "Open Strength", duration: "90 min", intensity: "Self-paced", description: "Coached open-gym time to run your own program with expert eyes nearby." },
+    { name: "Barbell Foundations", duration: "60 min", intensity: "All levels", description: "Master the core lifts with coached technique and progressive loading.", image: "/class-barbell.jpg" },
+    { name: "Conditioning", duration: "45 min", intensity: "High", description: "Engine-building intervals that blend strength and cardio into one session.", image: "/class-conditioning.jpg" },
+    { name: "Mobility & Recovery", duration: "50 min", intensity: "Low", description: "Restorative work to keep joints healthy and movement pain-free.", image: "/class-mobility.jpg" },
+    { name: "Open Strength", duration: "90 min", intensity: "Self-paced", description: "Coached open-gym time to run your own program with expert eyes nearby.", image: "/class-open.jpg" },
   ],
 };

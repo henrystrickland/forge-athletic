@@ -17,9 +17,8 @@ export function Navbar({ content }: { content: NavContent }) {
 
   const linkBase = "text-sm font-medium tracking-wide transition-colors";
   const linkColor = scrolled ? "text-black/70 hover:text-black" : "text-white/80 hover:text-white";
-  const headerBg = scrolled ? "bg-white/85 backdrop-blur-md shadow-sm" : "bg-transparent";
-  const logoColor = scrolled ? "text-black" : "text-white";
-
+const headerBg = scrolled ? "bg-white/25 backdrop-blur-2xl backdrop-saturate-150 border-b border-white/20 shadow-sm" : "bg-transparent";
+const logoColor = scrolled ? "text-black" : "text-white";
   return (
     <motion.header initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: "easeOut" }} className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", headerBg)}>
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:grid md:grid-cols-3">
