@@ -124,5 +124,26 @@
     }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
+    font-size: 17px;
+    overscroll-behavior-y: none;
     }
+  body {
+    overscroll-behavior-y: none;
+    }
+  /* JS handles snap on all devices — wheel, arrow keys, and touch swipe */
+
+  /* Subtle film grain for depth on dark sections */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
+    opacity: 0.032;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    mix-blend-mode: overlay;
+  }
 }

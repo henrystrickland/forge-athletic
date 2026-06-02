@@ -3,22 +3,22 @@ import { cn } from "@/lib/utils"
 
 interface SectionProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode
-  /** Optional id for anchor links (e.g. "classes", "coaches") */
   id?: string
-  /** Tighten vertical padding for compact sections */
   compact?: boolean
-  /** Remove the max-width container (for full-bleed sections) */
   fullBleed?: boolean
+  /** Opt out of snap + min-height (used when parent handles snap) */
+  noSnap?: boolean
 }
 
 export const Section = forwardRef<HTMLElement, SectionProps>(
-  ({ children, id, compact, fullBleed, className, ...props }, ref) => {
+  ({ children, id, compact, fullBleed, noSnap, className, ...props }, ref) => {
     return (
       <section
         ref={ref}
         id={id}
         className={cn(
           "w-full",
+          !noSnap && "min-h-svh snap-start",
           compact ? "py-16 md:py-20" : "py-24 md:py-32",
           className
         )}
