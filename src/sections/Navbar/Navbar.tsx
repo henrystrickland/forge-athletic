@@ -59,7 +59,8 @@ export function Navbar({ content }: { content: NavContent }) {
         </div>
 
         <a
-          href="#top"
+          href="#"
+          onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }) }}
           className="font-[Fraunces] text-center text-xl font-light tracking-[0.22em] text-white transition-colors md:justify-self-center"
         >
           {content.logo}

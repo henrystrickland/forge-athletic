@@ -54,12 +54,12 @@ export function Contact({ content }: { content: ContactContent }) {
   return (
     <Section noSnap className="bg-[#1c1b1a]">
       {/* Header */}
-      <motion.div {...fadeUp()} className="mb-16">
+      <motion.div {...fadeUp()} className="mb-10 md:mb-16">
         <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-primary">{content.eyebrow}</p>
         <h2 className="font-[Fraunces] mt-3 text-4xl font-light tracking-tight text-foreground md:text-5xl">{content.heading}</h2>
       </motion.div>
 
-      <div className="grid grid-cols-1 gap-16 lg:grid-cols-[2fr_3fr]">
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-[2fr_3fr] lg:gap-16">
         {/* Left — Info */}
         <div className="flex flex-col gap-10">
           <motion.p {...fadeUp(0.1)} className="text-base leading-relaxed text-foreground/60 max-w-xs">

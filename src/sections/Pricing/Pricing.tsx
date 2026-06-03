@@ -35,7 +35,7 @@ export function Pricing({ content }: PricingProps) {
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
             )}
 
-            <div className="p-8 md:p-9">
+            <div className="p-6 md:p-9">
               <div className="mb-7 flex flex-col gap-2">
                 {tier.highlight && (
                   <span className="mb-1 self-start rounded-full border border-primary/30 bg-primary/10 px-3 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-primary">

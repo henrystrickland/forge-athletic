@@ -73,7 +73,7 @@ export function Testimonials() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: "easeOut" as const }}
-        className="mb-12 md:mb-16"
+        className="mb-10 md:mb-16"
       >
         <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-primary">
           What members say
@@ -84,7 +84,7 @@ export function Testimonials() {
       </motion.div>
 
       {/* Scrolling columns */}
-      <div className="flex justify-start gap-4 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[600px] overflow-hidden md:justify-center">
+      <div className="flex justify-center gap-4 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[500px] overflow-hidden md:max-h-[600px]">
         <TestimonialsColumn testimonials={firstColumn} duration={18} />
         <TestimonialsColumn
           testimonials={secondColumn}

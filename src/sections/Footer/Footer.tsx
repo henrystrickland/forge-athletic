@@ -20,7 +20,7 @@ export function Footer({ content }: { content: FooterContent }) {
       <div className="mx-auto max-w-7xl px-6 md:px-8">
 
         {/* Main grid */}
-        <div className="grid grid-cols-2 gap-12 py-16 md:grid-cols-[1.5fr_1fr_1fr] md:py-20">
+        <div className="grid grid-cols-2 gap-8 py-12 md:grid-cols-[1.5fr_1fr_1fr] md:gap-12 md:py-20">
 
           {/* Brand col */}
           <motion.div

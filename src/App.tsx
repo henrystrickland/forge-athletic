@@ -74,6 +74,10 @@ function App() {
   const [bookingClass, setBookingClass] = useState<string | null>(null)
   useScrollSnap()
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <main className="min-h-screen bg-background text-foreground">
       <Navbar content={forgeNav} />

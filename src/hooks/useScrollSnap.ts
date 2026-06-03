@@ -14,6 +14,9 @@ export function useScrollSnap() {
   const touchStartTime = useRef(0)
 
   useEffect(() => {
+    // Snap only on desktop (mouse/trackpad). Touch devices get native scroll.
+    if (window.matchMedia("(pointer: coarse)").matches) return
+
     function getSections() {
       return SECTIONS
         .map((id) => document.getElementById(id))

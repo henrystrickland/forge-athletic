@@ -18,8 +18,8 @@ export const Section = forwardRef<HTMLElement, SectionProps>(
         id={id}
         className={cn(
           "w-full",
-          !noSnap && "min-h-svh snap-start",
-          compact ? "py-16 md:py-20" : "py-24 md:py-32",
+          !noSnap && "md:min-h-svh md:snap-start",
+          compact ? "py-16 md:py-20" : "py-20 md:py-32",
           className
         )}
         {...props}

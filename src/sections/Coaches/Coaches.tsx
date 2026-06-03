@@ -114,10 +114,10 @@ export function Coaches({ content }: { content: CoachesContent }) {
   return (
     <section
       id="coaches"
-      className="min-h-svh snap-start bg-[#0f0e0d] px-6 py-20 md:flex md:flex-col md:justify-center md:px-8 md:pt-[112px] md:pb-[40px]"
+      className="bg-[#0f0e0d] px-6 py-16 md:min-h-svh md:snap-start md:flex md:flex-col md:justify-center md:px-8 md:pt-[112px] md:pb-[40px]"
     >
       <div className="mx-auto w-full max-w-7xl">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-[280px_1fr] md:gap-20 md:items-start">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-[280px_1fr] md:gap-20 md:items-start">
 
           {/* Left: label + large heading */}
           <motion.div
