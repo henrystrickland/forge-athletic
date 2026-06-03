@@ -42,7 +42,7 @@ export function BookingModal({ className, onClose }: BookingModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 16 }}
             transition={{ duration: 0.25, ease: "easeOut" as const }}
-            className="relative w-full max-w-md rounded-2xl bg-[#0f0e0d] border border-white/[0.08] p-8 shadow-2xl"
+            className="relative w-full max-w-md rounded-2xl bg-[#0f0e0d] border border-white/8 p-8 shadow-2xl"
           >
             <button
               onClick={handleClose}
@@ -84,7 +84,7 @@ export function BookingModal({ className, onClose }: BookingModalProps) {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       required
-                      className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-foreground outline-none placeholder:text-foreground/30 focus:border-primary/40 transition-colors"
+                      className="w-full rounded-xl border border-white/10 bg-white/4 px-4 py-3 text-sm text-foreground outline-none placeholder:text-foreground/30 focus:border-primary/40 transition-colors"
                     />
                   </div>
 
@@ -99,7 +99,7 @@ export function BookingModal({ className, onClose }: BookingModalProps) {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       required
-                      className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-foreground outline-none placeholder:text-foreground/30 focus:border-primary/40 transition-colors"
+                      className="w-full rounded-xl border border-white/10 bg-white/4 px-4 py-3 text-sm text-foreground outline-none placeholder:text-foreground/30 focus:border-primary/40 transition-colors"
                     />
                   </div>
 

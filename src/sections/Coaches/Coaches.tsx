@@ -20,10 +20,10 @@ function CoachRow({ coach, index }: { coach: Coach; index: number }) {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.1 + index * 0.12 }}
-      className="group relative border-b border-white/[0.07] py-8 transition-colors duration-300 hover:bg-white/[0.025]"
+      className="group relative border-b border-white/[0.07] py-8 transition-colors duration-300 hover:bg-white/2.5"
     >
       {/* Amber left-border that draws down on hover */}
-      <span className="pointer-events-none absolute inset-y-0 left-0 w-[2px] origin-top scale-y-0 bg-primary transition-transform duration-300 ease-out group-hover:scale-y-100" />
+      <span className="pointer-events-none absolute inset-y-0 left-0 w-0.5 origin-top scale-y-0 bg-primary transition-transform duration-300 ease-out group-hover:scale-y-100" />
 
       {/* Desktop */}
       <div className="hidden md:grid md:grid-cols-[2.5rem_1fr_1.5fr_auto] md:items-center md:gap-x-10 md:pl-4">
@@ -114,7 +114,7 @@ export function Coaches({ content }: { content: CoachesContent }) {
   return (
     <section
       id="coaches"
-      className="bg-[#0f0e0d] px-6 py-16 md:min-h-svh md:snap-start md:flex md:flex-col md:justify-center md:px-8 md:pt-[112px] md:pb-[40px]"
+      className="bg-[#0f0e0d] px-6 py-16 md:min-h-svh md:snap-start md:flex md:flex-col md:justify-center md:px-8 md:pt-28 md:pb-10"
     >
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-[280px_1fr] md:gap-20 md:items-start">
@@ -125,7 +125,7 @@ export function Coaches({ content }: { content: CoachesContent }) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="md:pt-[calc(2rem+1px)]"
+            className="md:pt-8.25"
           >
             <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-primary">
               {content.eyebrow}
