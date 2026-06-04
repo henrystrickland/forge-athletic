@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import { Section } from "@/components/Section"
 import type { PricingContent } from "@/content/forge"
+import { openBooking } from "@/lib/cal"
 
 type PricingProps = { content: PricingContent }
 
@@ -50,17 +51,17 @@ export function Pricing({ content }: PricingProps) {
                 <p className="text-sm text-foreground/50">{tier.description}</p>
               </div>
 
-              <a
-                href="#book"
+              <button
+                onClick={() => openBooking()}
                 className={[
-                  "mb-8 block rounded-full px-6 py-3 text-center text-sm font-medium transition-all duration-200",
+                  "mb-8 w-full rounded-full px-6 py-3 text-center text-sm font-medium transition-all duration-200",
                   tier.highlight
                     ? "bg-primary text-white hover:opacity-90"
                     : "border border-white/20 text-foreground/70 hover:border-white/40 hover:text-foreground",
                 ].join(" ")}
               >
                 {tier.cta}
-              </a>
+              </button>
 
               <div className="space-y-3 border-t border-white/[0.08] pt-7">
                 {tier.features.map((feature, idx) => (

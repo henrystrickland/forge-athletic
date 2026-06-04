@@ -3,29 +3,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { NavContent } from "@/content/forge";
-
-const SECTIONS = ["hero", "classes", "coaches", "pricing", "contact"];
+import { openBooking } from "@/lib/cal";
+import { useScrollInfo } from "@/hooks/useScrollInfo";
 
 export function Navbar({ content }: { content: NavContent }) {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
-
-  useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 50);
-      const mid = window.scrollY + window.innerHeight / 2;
-      let active = "hero";
-      SECTIONS.forEach((id) => {
-        const el = document.getElementById(id);
-        if (el && el.offsetTop <= mid) active = id;
-      });
-      setActiveSection(active);
-    }
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const { scrollY, activeSectionId } = useScrollInfo();
+  const scrolled = scrollY > 50;
+  const activeSection = activeSectionId;
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -79,12 +64,12 @@ export function Navbar({ content }: { content: NavContent }) {
               {link.label}
             </a>
           ))}
-          <a
-            href={content.cta.href}
+          <button
+            onClick={() => openBooking()}
             className="rounded-full bg-primary px-5 py-2 text-sm font-medium text-white transition-transform hover:scale-105"
           >
             {content.cta.label}
-          </a>
+          </button>
         </div>
 
         <motion.button
@@ -179,13 +164,12 @@ export function Navbar({ content }: { content: NavContent }) {
                 transition={{ delay: 0.32, duration: 0.4, ease: "easeOut" }}
                 className="border-t border-white/[0.07] px-6 pb-10 pt-6"
               >
-                <a
-                  href={content.cta.href}
-                  onClick={() => setOpen(false)}
+                <button
+                  onClick={() => { openBooking(); setOpen(false); }}
                   className="flex w-full items-center justify-center rounded-full bg-primary py-[15px] text-[0.8rem] font-semibold tracking-[0.12em] uppercase text-white transition-all active:scale-95"
                 >
                   {content.cta.label}
-                </a>
+                </button>
                 <p className="mt-4 text-center text-[0.65rem] tracking-widest uppercase text-white/20">
                   Strength, refined.
                 </p>

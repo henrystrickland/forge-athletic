@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { motion } from "framer-motion"
 import { useScrollSnap } from "@/hooks/useScrollSnap"
+import { useScrollInfo } from "@/hooks/useScrollInfo"
 import { Navbar } from "@/sections/Navbar/Navbar"
 import { forgeNav } from "@/content/forge"
+import { initCal } from "@/lib/cal"
 import { Hero } from "@/sections/Hero/Hero"
 import { forgeHero } from "@/content/forge"
 import { Classes } from "@/sections/Classes/Classes"
@@ -16,28 +18,12 @@ import { Contact } from "@/sections/Contact/Contact"
 import { forgeContact } from "@/content/forge"
 import { Footer } from "@/sections/Footer/Footer"
 import { forgeFooter } from "@/content/forge"
-import { BookingModal } from "@/sections/Booking/BookingModal"
 import { BackToTop } from "@/components/BackToTop"
 
 const SNAP_SECTIONS = ["hero", "classes", "coaches", "pricing", "testimonials", "contact"] as const
 
 function SectionNav() {
-  const [active, setActive] = useState(0)
-
-  useEffect(() => {
-    function update() {
-      const mid = window.scrollY + window.innerHeight / 2
-      let idx = 0
-      SNAP_SECTIONS.forEach((id, i) => {
-        const el = document.getElementById(id)
-        if (el && el.offsetTop <= mid) idx = i
-      })
-      setActive(idx)
-    }
-    window.addEventListener("scroll", update, { passive: true })
-    update()
-    return () => window.removeEventListener("scroll", update)
-  }, [])
+  const { activeSectionIndex: active } = useScrollInfo()
 
   function goTo(id: string) {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })
@@ -72,11 +58,11 @@ function SectionNav() {
 }
 
 function App() {
-  const [bookingClass, setBookingClass] = useState<string | null>(null)
   useScrollSnap()
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    initCal()
   }, [])
 
   return (
@@ -85,7 +71,7 @@ function App() {
       <SectionNav />
       <Hero content={forgeHero} />
 
-      <Classes content={forgeClasses} onBook={setBookingClass} />
+      <Classes content={forgeClasses} />
       <Coaches content={forgeCoaches} />
       <Pricing content={forgePricing} />
       <Testimonials />
@@ -95,7 +81,6 @@ function App() {
       </div>
 
       <BackToTop />
-      <BookingModal className={bookingClass} onClose={() => setBookingClass(null)} />
     </main>
   )
 }

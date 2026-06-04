@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 
 export type Testimonial = {
   text: string;
@@ -14,19 +13,13 @@ export const TestimonialsColumn = (props: {
   duration?: number;
 }) => {
   return (
-    <div className={props.className}>
-      <motion.div
-        animate={{ translateY: "-50%" }}
-        transition={{
-          duration: props.duration || 10,
-          repeat: Infinity,
-          ease: "linear" as const,
-          repeatType: "loop",
-        }}
-        className="flex flex-col gap-4 pb-4"
+    <div className={props.className} style={{ overflow: "hidden" }}>
+      <div
+        className="testimonials-scroll flex flex-col gap-4 pb-4"
+        style={{ animationDuration: `${props.duration ?? 10}s` }}
       >
-        {[...new Array(2).fill(0).map((_, index) => (
-          <React.Fragment key={index}>
+        {[0, 1].map((copy) => (
+          <React.Fragment key={copy}>
             {props.testimonials.map(({ text, image, name, role }, i) => (
               <div
                 key={i}
@@ -39,6 +32,8 @@ export const TestimonialsColumn = (props: {
                     height={36}
                     src={image}
                     alt={name}
+                    loading="lazy"
+                    decoding="async"
                     className="h-9 w-9 rounded-full object-cover"
                   />
                   <div className="flex flex-col">
@@ -53,8 +48,8 @@ export const TestimonialsColumn = (props: {
               </div>
             ))}
           </React.Fragment>
-        ))]}
-      </motion.div>
+        ))}
+      </div>
     </div>
   );
 };

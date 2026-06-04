@@ -1,6 +1,7 @@
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Section } from "@/components/Section"
+import { openBooking } from "@/lib/cal"
 
 export type HeroBackground =
   | { type: "image"; src: string }
@@ -31,16 +32,13 @@ export function Hero({ content }: { content: HeroContent }) {
     <Section ref={ref} fullBleed id="hero" className="relative h-screen overflow-hidden">
       <div className="absolute inset-0 z-0">
         {content.background.type === "image" && (
-          <motion.img
+          <img
             src={content.background.src}
             alt=""
             fetchPriority="high"
             loading="eager"
             decoding="async"
-            initial={{ scale: 1.06 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 2.0, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover hero-zoom"
           />
         )}
         {content.background.type === "video" && (
@@ -56,7 +54,7 @@ export function Hero({ content }: { content: HeroContent }) {
       </div>
 
       <motion.div
-        style={{ opacity, scale }}
+        style={{ opacity, scale, willChange: "opacity, transform" }}
         className="mx-auto flex h-full max-w-4xl flex-col items-center justify-center px-6 text-center"
       >
         {content.eyebrow && (
@@ -98,15 +96,15 @@ export function Hero({ content }: { content: HeroContent }) {
         )}
 
         {content.cta && (
-          <motion.a
-            href={content.cta.href}
+          <motion.button
+            onClick={() => openBooking()}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 + words.length * 0.12 }}
             className="mt-10 rounded-full bg-primary px-8 py-3 text-sm font-medium text-white transition-transform hover:scale-105"
           >
             {content.cta.label}
-          </motion.a>
+          </motion.button>
         )}
       </motion.div>
     </Section>

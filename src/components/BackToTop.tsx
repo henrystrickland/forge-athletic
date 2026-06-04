@@ -1,20 +1,12 @@
-import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronUp } from "lucide-react";
+import { useScrollInfo } from "@/hooks/useScrollInfo";
 
 export function BackToTop() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    function onScroll() {
-      const hero = document.getElementById("hero");
-      const threshold = hero ? hero.offsetTop + hero.offsetHeight * 0.8 : window.innerHeight * 0.8;
-      setVisible(window.scrollY > threshold);
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const { scrollY } = useScrollInfo();
+  const hero = document.getElementById("hero");
+  const threshold = hero ? hero.offsetTop + hero.offsetHeight * 0.8 : window.innerHeight * 0.8;
+  const visible = scrollY > threshold;
 
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });

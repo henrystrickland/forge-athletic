@@ -1,10 +1,11 @@
 import { motion } from "framer-motion"
 import { Section } from "@/components/Section"
 import type { ClassesContent } from "@/content/forge"
+import { openBooking } from "@/lib/cal"
 
-type ClassesProps = { content: ClassesContent; onBook: (className: string) => void }
+type ClassesProps = { content: ClassesContent }
 
-export function Classes({ content, onBook }: ClassesProps) {
+export function Classes({ content }: ClassesProps) {
   return (
     <Section id="classes" className="bg-[#080808]">
       <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6, ease: "easeOut" as const }} className="mb-8 md:mb-14">
@@ -32,7 +33,7 @@ export function Classes({ content, onBook }: ClassesProps) {
               <h3 className="font-[Fraunces] text-2xl font-light text-white">{item.name}</h3>
               <p className="max-w-xs text-sm leading-relaxed text-white/70 transition-all duration-300 max-md:opacity-100 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">{item.description}</p>
               <button
-                onClick={() => onBook(item.name)}
+                onClick={() => openBooking(item.calLink)}
                 className="mt-2 self-start rounded-full bg-primary px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition-all duration-200 hover:opacity-90 max-md:opacity-100 md:mt-1 md:px-4 md:py-2 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100"
               >
                 Book

@@ -1,11 +1,14 @@
 import type { HeroContent } from "@/sections/Hero/Hero"
 
+export const CAL_LINK = "henry-strickland-d8fgjt"
+export const BOOKING_URL = `https://cal.com/${CAL_LINK}`
+
 export const forgeHero: HeroContent = {
   eyebrow: "Forge Athletic Co.",
   headline: "Strength, refined.",
   sub: "A boutique strength studio in the heart of the city.",
-  cta: { label: "Book a class", href: "#classes" },
-  background: { type: "image", src: "/hero.jpg" },
+  cta: { label: "Book a class", href: BOOKING_URL },
+  background: { type: "image", src: "/hero.webp" },
 }
 
 export type NavLink = { label: string; href: string };
@@ -27,10 +30,10 @@ export const forgeNav: NavContent = {
     { label: "Pricing", href: "#pricing" },
     { label: "Contact", href: "#contact" },
   ],
-  cta: { label: "Book a class", href: "#book" },
+  cta: { label: "Book a class", href: BOOKING_URL },
 };
 
-export type ClassCard = { name: string; duration: string; intensity: string; description: string; image: string };
+export type ClassCard = { name: string; duration: string; intensity: string; description: string; image: string; calLink: string };
 
 export type ClassesContent = {
   eyebrow: string;
@@ -42,10 +45,10 @@ export const forgeClasses: ClassesContent = {
   eyebrow: "What we offer",
   heading: "Train with intention.",
   classes: [
-    { name: "Barbell Foundations", duration: "60 min", intensity: "All levels", description: "Master the core lifts with coached technique and progressive loading.", image: "/class-barbell.jpg" },
-    { name: "Conditioning", duration: "45 min", intensity: "High", description: "Engine-building intervals that blend strength and cardio into one session.", image: "/class-conditioning.jpg" },
-    { name: "Mobility & Recovery", duration: "50 min", intensity: "Low", description: "Restorative work to keep joints healthy and movement pain-free.", image: "/class-mobility.jpg" },
-    { name: "Open Strength", duration: "90 min", intensity: "Self-paced", description: "Coached open-gym time to run your own program with expert eyes nearby.", image: "/class-open.jpg" },
+    { name: "Barbell Foundations", duration: "60 min", intensity: "All levels", description: "Master the core lifts with coached technique and progressive loading.", image: "/class-barbell.webp", calLink: "henry-strickland-d8fgjt/barbell-foundations" },
+    { name: "Conditioning", duration: "45 min", intensity: "High", description: "Engine-building intervals that blend strength and cardio into one session.", image: "/class-conditioning.webp", calLink: "henry-strickland-d8fgjt/conditioning" },
+    { name: "Mobility & Recovery", duration: "50 min", intensity: "Low", description: "Restorative work to keep joints healthy and movement pain-free.", image: "/class-mobility.webp", calLink: "henry-strickland-d8fgjt/mobility-recovery" },
+    { name: "Open Strength", duration: "90 min", intensity: "Self-paced", description: "Coached open-gym time to run your own program with expert eyes nearby.", image: "/class-open.webp", calLink: "henry-strickland-d8fgjt/open-strength" },
   ],
 };
 
@@ -127,7 +130,7 @@ export const forgeFooter: FooterContent = {
   legal: "© 2025 Forge Athletic Co. All rights reserved.",
 }
 
-export type PricingTier = { name: string; price: string; period: string; description: string; features: string[]; cta: string; highlight?: boolean };
+export type PricingTier = { name: string; price: string; period: string; description: string; features: string[]; cta: string; href: string; highlight?: boolean };
 
 export type PricingContent = {
   eyebrow: string;
@@ -151,6 +154,7 @@ export const forgePricing: PricingContent = {
         "Cancel anytime",
       ],
       cta: "Book a class",
+      href: BOOKING_URL,
     },
     {
       name: "Membership",
@@ -165,6 +169,7 @@ export const forgePricing: PricingContent = {
         "Progress tracking",
       ],
       cta: "Get started",
+      href: BOOKING_URL,
       highlight: true,
     },
     {
@@ -180,6 +185,7 @@ export const forgePricing: PricingContent = {
         "24/7 member support",
       ],
       cta: "Schedule a consult",
+      href: BOOKING_URL,
     },
   ],
 };
