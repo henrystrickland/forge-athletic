@@ -27,6 +27,11 @@ export function Navbar({ content }: { content: NavContent }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
   function isActive(href: string) {
     return href === `#${activeSection}`;
   }
@@ -41,6 +46,8 @@ export function Navbar({ content }: { content: NavContent }) {
       isActive(href) ? "text-white" : "text-white/50 hover:text-white/80"
     );
   }
+
+  const allLinks = [...content.leftLinks, ...content.rightLinks];
 
   return (
     <motion.header
@@ -80,45 +87,111 @@ export function Navbar({ content }: { content: NavContent }) {
           </a>
         </div>
 
-        <button
+        <motion.button
           onClick={() => setOpen(true)}
-          className="text-white transition-colors md:hidden"
+          whileTap={{ scale: 0.88 }}
+          className="flex items-center justify-center text-white/80 hover:text-white transition-colors md:hidden"
           aria-label="Open menu"
         >
           <Menu size={26} />
-        </button>
+        </motion.button>
       </nav>
 
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-8 bg-black/95 md:hidden"
-          >
-            <button onClick={() => setOpen(false)} className="absolute right-6 top-6 text-white" aria-label="Close menu">
-              <X size={28} />
-            </button>
-            {[...content.leftLinks, ...content.rightLinks].map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="text-2xl font-medium text-white/90 hover:text-white"
-              >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href={content.cta.href}
+          <>
+            {/* Backdrop */}
+            <motion.div
+              key="backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
               onClick={() => setOpen(false)}
-              className="mt-4 rounded-full bg-primary px-6 py-3 text-base font-medium text-white"
+              className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm md:hidden"
+            />
+
+            {/* Slide-in panel */}
+            <motion.div
+              key="panel"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 320, damping: 32, mass: 0.9 }}
+              className="fixed inset-y-0 right-0 z-50 flex w-[82vw] max-w-xs flex-col bg-[#080808] border-l border-white/[0.07] md:hidden"
+              style={{ boxShadow: "-24px 0 80px rgba(0,0,0,0.6)" }}
             >
-              {content.cta.label}
-            </a>
-          </motion.div>
+              {/* Panel header */}
+              <div className="flex items-center justify-between px-6 py-[22px] border-b border-white/[0.07]">
+                <span className="font-[Fraunces] text-[1.1rem] font-light tracking-[0.22em] text-white/90">
+                  {content.logo}
+                </span>
+                <motion.button
+                  whileTap={{ scale: 0.88, rotate: 90 }}
+                  transition={{ duration: 0.18 }}
+                  onClick={() => setOpen(false)}
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.07] text-white/60 hover:bg-white/[0.12] hover:text-white transition-all"
+                  aria-label="Close menu"
+                >
+                  <X size={16} strokeWidth={2.5} />
+                </motion.button>
+              </div>
+
+              {/* Nav links */}
+              <div className="flex flex-1 flex-col justify-center px-6 gap-0">
+                {allLinks.map((link, i) => (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    initial={{ opacity: 0, x: 18 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.08 + i * 0.055, duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className={cn(
+                      "group flex items-center gap-4 border-b border-white/[0.06] py-[18px] last:border-0",
+                    )}
+                  >
+                    <span className="w-6 font-mono text-[10px] tracking-widest text-white/20 leading-none">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className={cn(
+                      "flex-1 text-[1.55rem] font-light leading-none tracking-wide transition-colors duration-200",
+                      isActive(link.href)
+                        ? "text-white"
+                        : "text-white/45 group-hover:text-white/80"
+                    )}>
+                      {link.label}
+                    </span>
+                    {isActive(link.href) && (
+                      <motion.div
+                        layoutId="active-dot"
+                        className="h-[6px] w-[6px] rounded-full bg-primary"
+                      />
+                    )}
+                  </motion.a>
+                ))}
+              </div>
+
+              {/* CTA + tagline */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.32, duration: 0.4, ease: "easeOut" }}
+                className="border-t border-white/[0.07] px-6 pb-10 pt-6"
+              >
+                <a
+                  href={content.cta.href}
+                  onClick={() => setOpen(false)}
+                  className="flex w-full items-center justify-center rounded-full bg-primary py-[15px] text-[0.8rem] font-semibold tracking-[0.12em] uppercase text-white transition-all active:scale-95"
+                >
+                  {content.cta.label}
+                </a>
+                <p className="mt-4 text-center text-[0.65rem] tracking-widest uppercase text-white/20">
+                  Strength, refined.
+                </p>
+              </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </motion.header>

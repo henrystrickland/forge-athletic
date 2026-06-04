@@ -17,6 +17,7 @@ import { forgeContact } from "@/content/forge"
 import { Footer } from "@/sections/Footer/Footer"
 import { forgeFooter } from "@/content/forge"
 import { BookingModal } from "@/sections/Booking/BookingModal"
+import { BackToTop } from "@/components/BackToTop"
 
 const SNAP_SECTIONS = ["hero", "classes", "coaches", "pricing", "testimonials", "contact"] as const
 
@@ -93,6 +94,7 @@ function App() {
         <Footer content={forgeFooter} />
       </div>
 
+      <BackToTop />
       <BookingModal className={bookingClass} onClose={() => setBookingClass(null)} />
     </main>
   )
