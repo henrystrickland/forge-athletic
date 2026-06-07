@@ -103,11 +103,11 @@ export function Navbar({ content }: { content: NavContent }) {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 320, damping: 32, mass: 0.9 }}
-              className="fixed inset-y-0 right-0 z-50 flex w-[82vw] max-w-xs flex-col bg-[#080808] border-l border-white/[0.07] md:hidden"
-              style={{ boxShadow: "-24px 0 80px rgba(0,0,0,0.6)" }}
+              className="fixed inset-y-0 right-0 z-50 flex w-[82vw] max-w-xs flex-col bg-black/40 backdrop-blur-3xl backdrop-saturate-200 border-l border-white/[0.1] md:hidden"
+              style={{ boxShadow: "-24px 0 80px rgba(0,0,0,0.5)" }}
             >
               {/* Panel header */}
-              <div className="flex items-center justify-between px-6 py-[22px] border-b border-white/[0.07]">
+              <div className="flex items-center justify-between px-6 py-[22px] border-b border-white/[0.1]">
                 <span className="font-[Fraunces] text-[1.1rem] font-light tracking-[0.22em] text-white/90">
                   {content.logo}
                 </span>
@@ -133,7 +133,7 @@ export function Navbar({ content }: { content: NavContent }) {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.08 + i * 0.055, duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] }}
                     className={cn(
-                      "group flex items-center gap-4 border-b border-white/[0.06] py-[18px] last:border-0",
+                      "group flex items-center gap-4 border-b border-white/[0.09] py-[18px] last:border-0",
                     )}
                   >
                     <span className="w-6 font-mono text-[10px] tracking-widest text-white/20 leading-none">
@@ -162,7 +162,7 @@ export function Navbar({ content }: { content: NavContent }) {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.32, duration: 0.4, ease: "easeOut" }}
-                className="border-t border-white/[0.07] px-6 pb-10 pt-6"
+                className="border-t border-white/[0.1] px-6 pb-10 pt-6"
               >
                 <button
                   onClick={() => { openBooking(); setOpen(false); }}
